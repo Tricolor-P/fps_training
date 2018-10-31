@@ -12,15 +12,14 @@ class GameDriver:
                   "FFA":3, 
                   "OSK_TDM":4, 
                   "OSK_FFA":5 }
-    GAME_PATH = "./../AssaultCube/assaultcube.sh"
-    GAME_STARTUP_CMD = "exec stdbuf -oL -eL"
-    def __init__(self, *, config=None):
+    def __init__(self, path, exec_cmd):
         self.executor = ParallelExecutor(
-            cmd = GameDriver.GAME_STARTUP_CMD + " " + GameDriver.GAME_PATH)
+            cmd = exec_cmd + " " + path)
         self.isRunningGame = False
+        self.windowIsActivated = False
 
     def startGame(self):
-        print("Sterting Game", end="...")
+        print("Starting Game", end="...")
         self.executor.start()
         self.isRunningGame = True
         print("OK")
@@ -30,6 +29,17 @@ class GameDriver:
         self.executor.stop()
         self.isRunningGame = False
         print("OK")
+
+    def activateWindow(self):
+        print("GameDriver:activateWindow", end="...")
+        print("-- Please Move The Window to The Upper-Left Corner --")
+        print("-- and Press Any Key --")
+        input()
+        self.windowIsActivated = True
+        print("OK")
+    
+    def getGameStatus(self):
+        pass
 
     def setGameMode(self,  *, mode="DEFAULT"):
         try:
@@ -49,6 +59,5 @@ class GameDriver:
             return GameDriver.GAME_MODE[mode]
     def setGameMap(self):
         pass
-    def getGameStatus(self):
-        pass
+    
         

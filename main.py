@@ -3,13 +3,15 @@ import pyautogui
 from module.gamedriver import GameDriver
 
 if __name__ == "__main__":
+
+    #ゲームの起動
     acDriver = GameDriver(config=None)
     acDriver.startGame()
     print("-- Please Move The Window to The Upper-Left Corner --")
     print("-- and Press Any Key --")
     input()
     acDriver.setGameMode(mode="OSK_TDM")
-
+    
     #変更必要、ドライバー以下に追加
     print("AssaultCube:Window activating", end="...")
     screen_width = 640
