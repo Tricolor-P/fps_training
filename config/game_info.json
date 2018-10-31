@@ -1,0 +1,45 @@
+{
+    "path" : "./../AssaultCube/assaultcube.sh",
+    "execCmd" : "exec stdbuf -oL -eL",
+    "screenSize" : {
+        "width" : 640,
+        "height" : 480
+    },
+    "screenOfset" : {
+        "x" : 0,
+        "y" : 52
+    },
+    "gameSettingCmds": {
+        "selectMap" : "/map",
+        "selectMode" : "/mode",
+        "selectTeam" : "/team",
+        "addBot" : "/addbot"
+    },
+    "maps" : {
+        "trainingMap" : "small_train_map"
+    },
+    "modes": {
+        "TDM" : "11",
+        "FFA" : "12",
+        "OSK_TDM" : "21",
+        "OSK_FFA" : "22"
+    },
+    "teams" : {
+        "RVSF" : "RVSF",
+        "CLA" : "CLA"
+    },
+    "botPowers" : {
+        "bad" : "bad"
+    },
+    "gamePlayingOps" : {
+        "move" : ["w", "a", "s", "d", ""], 
+        "aim" : [[ [-10, -10], [-10, 0], [-10, 10] ],
+                 [ [  0, -10], [  0, 0], [  0, 10] ],
+                 [ [ 10, -10], [ 10, 0], [ 10, 10] ]],
+        "shot" : "z",
+        "reload" : "r",
+        "selectPrimaryWeapon" : "1",
+        "selectSecondaryWeapon" : "2",
+        "selectNearestWeapon" : "3"
+    }
+}
