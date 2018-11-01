@@ -1,36 +1,33 @@
 import time
 import pyautogui
+from module.game_info import GameInfo
 from module.gamedriver import GameDriver
+from module.agent import Agent
+
 
 if __name__ == "__main__":
 
-    #ゲームの起動
-    acDriver = GameDriver(config=None)
-    acDriver.startGame()
-    print("-- Please Move The Window to The Upper-Left Corner --")
-    print("-- and Press Any Key --")
-    input()
-    acDriver.setGameMode(mode="OSK_TDM")
+    #ゲーム情報、どらいばー、エージェントの作成
+    game_info =  GameInfo()
+    gamedriver = GameDriver(game_info.PATH, game_info.EXEC_CMD,
+                            game_info.SCREEN_SIZE, game_info.SCREEN_OFSET)
+    agent = Agent(game_info)
+    #コマンドを投げるに変更する↑
     
-    #変更必要、ドライバー以下に追加
-    print("AssaultCube:Window activating", end="...")
-    screen_width = 640
-    screen_height = 400
-    screen_ofset_width = 0
-    screen_ofset_height = 52
-    pyautogui.moveTo(screen_width/2+screen_ofset_width,
-                 screen_height/2+screen_ofset_height,1)
-    pyautogui.click()
-    pyautogui.moveRel(1, 0, 1)
-    print("Done.")
-    
-    print("AssaultCube:GameMode initializing", end="...")
-    pyautogui.typewrite("/mode 21; map small_train_map\n",0.02)
-    pyautogui.typewrite("/team CLA\n",0.02)
-    pyautogui.typewrite("/addbot RVSF bad bot1\n",0.02)
-    pyautogui.typewrite("/addbot RVSF bad bot2\n",0.02)
-    pyautogui.typewrite("/addbot RVSF bad bot3\n",0.02)
-    pyautogui.typewrite("/addbot RVSF bad bot4\n",0.02)
 
-    time.sleep(3)
-    acDriver.stopGame()
+    #ゲームの起動
+    gamedriver.startGame()
+    gamedriver.activateWindow()
+    time.sleep(1)
+
+    #ゲームモード初期化
+    print("AssaultCube:GameMode initializing", end="...")
+    gamedriver.send_cmd(agent.gen_game_setting_cmd(mode="OSK_TDM", map="TRAINING_MAP"), 0.02)
+    gamedriver.send_cmd(agent.gen_team_select_cmd(team="CLA"), 0.02)
+    gamedriver.send_cmd(agent.gen_add_bot_cmd(name="bot1"), 0.02)
+    gamedriver.send_cmd(agent.gen_add_bot_cmd(name="bot1"), 0.02)
+    gamedriver.send_cmd(agent.gen_add_bot_cmd(name="bot1"), 0.02)
+    gamedriver.send_cmd(agent.gen_add_bot_cmd(name="bot1"), 0.02)
+    print("OK")
+
+    gamedriver.stopGame()

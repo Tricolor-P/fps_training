@@ -3,20 +3,20 @@
     "execCmd" : "exec stdbuf -oL -eL",
     "screenSize" : {
         "width" : 640,
-        "height" : 480
+        "height" : 400
     },
     "screenOfset" : {
         "x" : 0,
         "y" : 52
     },
     "gameSettingCmds": {
-        "selectMap" : "/map",
-        "selectMode" : "/mode",
-        "selectTeam" : "/team",
-        "addBot" : "/addbot"
+        "selectMap" : "map",
+        "selectMode" : "mode",
+        "selectTeam" : "team",
+        "addBot" : "addbot"
     },
     "maps" : {
-        "trainingMap" : "small_train_map"
+        "TRAINING_MAP" : "small_train_map"
     },
     "modes": {
         "TDM" : "11",
@@ -28,8 +28,8 @@
         "RVSF" : "RVSF",
         "CLA" : "CLA"
     },
-    "botPowers" : {
-        "bad" : "bad"
+    "botStr" : {
+        "BAD" : "bad"
     },
     "gamePlayingOps" : {
         "move" : ["w", "a", "s", "d", ""], 
